@@ -1,6 +1,6 @@
 package software.plusminus.aspect;
 
-public interface Finally {
+public interface Finally extends Advice {
 
     void finish();
 

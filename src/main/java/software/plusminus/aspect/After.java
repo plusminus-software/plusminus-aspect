@@ -1,6 +1,6 @@
 package software.plusminus.aspect;
 
-public interface After {
+public interface After extends Advice {
 
     void after();
 
