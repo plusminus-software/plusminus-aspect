@@ -1,7 +1,9 @@
 package software.plusminus.aspect;
 
+import java.util.Optional;
+
 public interface ExceptionExtractor<O extends Exception, E extends Exception> {
 
-    E extract(O originalException);
+    Optional<? extends E> extract(O originalException);
 
 }
