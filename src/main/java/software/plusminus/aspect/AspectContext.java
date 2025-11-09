@@ -2,7 +2,6 @@ package software.plusminus.aspect;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
-import software.plusminus.listener.DefaultJoinpoint;
 import software.plusminus.listener.Joinpoint;
 import software.plusminus.listener.ListenerContext;
 import software.plusminus.listener.TriggerContext;
@@ -19,7 +18,7 @@ public class AspectContext {
     private ExceptionExtractorContext exceptionExtractorContext;
 
     public void run(ThrowingRunnable runnable) {
-        run(runnable, DefaultJoinpoint.INSTANCE);
+        run(runnable, Joinpoint.DEFAULT);
     }
 
     public void run(ThrowingRunnable runnable, Joinpoint joinpoint) {
@@ -40,7 +39,7 @@ public class AspectContext {
     }
 
     public void before() {
-        before(DefaultJoinpoint.INSTANCE);
+        before(Joinpoint.DEFAULT);
     }
 
     public void before(Joinpoint joinpoint) {
@@ -48,7 +47,7 @@ public class AspectContext {
     }
 
     public ThrowingRunnable around(ThrowingRunnable runnable) {
-        return around(runnable, DefaultJoinpoint.INSTANCE);
+        return around(runnable, Joinpoint.DEFAULT);
     }
 
     public ThrowingRunnable around(ThrowingRunnable runnable, Joinpoint... joinpoints) {
@@ -56,7 +55,7 @@ public class AspectContext {
     }
 
     public void after() {
-        after(DefaultJoinpoint.INSTANCE);
+        after(Joinpoint.DEFAULT);
     }
 
     public void after(Joinpoint joinpoint) {
@@ -64,7 +63,7 @@ public class AspectContext {
     }
 
     public void onException(Exception exception) {
-        onException(exception, DefaultJoinpoint.INSTANCE);
+        onException(exception, Joinpoint.DEFAULT);
     }
 
     public void onException(Exception exception, Joinpoint joinpoint) {
@@ -75,7 +74,7 @@ public class AspectContext {
     }
 
     public void onFinally() {
-        onFinally(DefaultJoinpoint.INSTANCE);
+        onFinally(Joinpoint.DEFAULT);
     }
 
     public void onFinally(Joinpoint joinpoint) {

@@ -8,7 +8,6 @@ import software.plusminus.aspect.Before;
 import software.plusminus.aspect.ExceptionListener;
 import software.plusminus.aspect.Finally;
 import software.plusminus.aspect.ThrowingRunnable;
-import software.plusminus.listener.DefaultJoinpoint;
 import software.plusminus.listener.Joinpoint;
 
 import java.util.LinkedHashSet;
@@ -22,7 +21,7 @@ public class TestAspect implements Before, Around, After, ExceptionListener<Ille
 
     @Override
     public Joinpoint joinpoint() {
-        return DefaultJoinpoint.INSTANCE;
+        return Joinpoint.DEFAULT;
     }
 
     @Override

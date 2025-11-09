@@ -1,6 +1,5 @@
 package software.plusminus.aspect;
 
-import software.plusminus.listener.DefaultJoinpoint;
 import software.plusminus.listener.Joinpoint;
 
 import java.util.List;
@@ -10,7 +9,7 @@ import java.util.stream.Stream;
 public interface Around extends Advice {
 
     default Joinpoint joinpoint() {
-        return DefaultJoinpoint.INSTANCE;
+        return Joinpoint.DEFAULT;
     }
 
     void around(ThrowingRunnable runnable);
