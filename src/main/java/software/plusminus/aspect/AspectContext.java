@@ -26,10 +26,10 @@ public class AspectContext {
         run(runnable, joinpoint, joinpoint);
     }
 
-    public void run(ThrowingRunnable runnable, Joinpoint joinpoint, Joinpoint aroundJoinpoint) {
+    public void run(ThrowingRunnable runnable, Joinpoint joinpoint, Joinpoint additionalAroundJoinpoint) {
         try {
             before(joinpoint);
-            around(runnable, aroundJoinpoint).run();
+            around(runnable, joinpoint, additionalAroundJoinpoint).run();
             after(joinpoint);
         } catch (Exception e) {
             onException(e, joinpoint);
@@ -51,8 +51,8 @@ public class AspectContext {
         return around(runnable, DefaultJoinpoint.INSTANCE);
     }
 
-    public ThrowingRunnable around(ThrowingRunnable runnable, Joinpoint joinpoint) {
-        return Around.around(runnable, arounds, joinpoint);
+    public ThrowingRunnable around(ThrowingRunnable runnable, Joinpoint... joinpoints) {
+        return Around.around(runnable, arounds, joinpoints);
     }
 
     public void after() {
