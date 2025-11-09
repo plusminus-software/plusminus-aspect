@@ -1,5 +1,6 @@
 package software.plusminus.aspect.fixtures;
 
+import lombok.Getter;
 import org.springframework.stereotype.Component;
 import software.plusminus.aspect.After;
 import software.plusminus.aspect.Around;
@@ -7,6 +8,8 @@ import software.plusminus.aspect.Before;
 import software.plusminus.aspect.ExceptionListener;
 import software.plusminus.aspect.Finally;
 import software.plusminus.aspect.ThrowingRunnable;
+import software.plusminus.listener.DefaultJoinpoint;
+import software.plusminus.listener.Joinpoint;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -14,7 +17,13 @@ import java.util.Set;
 @Component
 public class TestAspect implements Before, Around, After, ExceptionListener<IllegalStateException>, Finally {
 
+    @Getter
     private Set<String> calls = new LinkedHashSet<>();
+
+    @Override
+    public Joinpoint joinpoint() {
+        return DefaultJoinpoint.INSTANCE;
+    }
 
     @Override
     public void before() {
@@ -39,11 +48,7 @@ public class TestAspect implements Before, Around, After, ExceptionListener<Ille
     }
 
     @Override
-    public void finish() {
+    public void onFinally() {
         calls.add("finish");
-    }
-
-    public Set<String> getCalls() {
-        return calls;
     }
 }

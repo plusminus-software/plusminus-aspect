@@ -1,6 +1,8 @@
 package software.plusminus.aspect;
 
-public interface After extends Advice {
+import software.plusminus.listener.Trigger;
+
+public interface After extends Advice, Trigger {
 
     void after();
 

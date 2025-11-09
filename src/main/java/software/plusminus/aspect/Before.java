@@ -1,6 +1,8 @@
 package software.plusminus.aspect;
 
-public interface Before extends Advice {
+import software.plusminus.listener.Trigger;
+
+public interface Before extends Advice, Trigger {
 
     void before();
 

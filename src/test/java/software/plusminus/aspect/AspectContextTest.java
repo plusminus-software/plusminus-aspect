@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static software.plusminus.check.Checks.check;
 
 @SpringBootTest
-class AspectManagerTest {
+class AspectContextTest {
 
     @Autowired
     private TestAspect testAspect;
@@ -24,7 +24,7 @@ class AspectManagerTest {
     @Autowired
     private UnknownExceptionListener unknownExceptionListener;
     @Autowired
-    private AspectManager aspectManager;
+    private AspectContext aspectContext;
 
     @AfterEach
     void afterEach() {
@@ -33,14 +33,14 @@ class AspectManagerTest {
 
     @Test
     void run() {
-        aspectManager.run(() -> testAspect.getCalls().add("originalCall"));
+        aspectContext.run(() -> testAspect.getCalls().add("originalCall"));
         check(testAspect.getCalls()).is("before", "aroundStart", "originalCall", "aroundEnd", "after", "finish");
     }
 
     @Test
     void exceptionHandling() {
         IllegalStateException illegalArgumentException = assertThrows(IllegalStateException.class,
-                () -> aspectManager.run(() -> {
+                () -> aspectContext.run(() -> {
                     throw new IllegalStateException("Test exception");
                 }));
 

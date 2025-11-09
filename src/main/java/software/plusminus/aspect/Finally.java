@@ -1,7 +1,9 @@
 package software.plusminus.aspect;
 
-public interface Finally extends Advice {
+import software.plusminus.listener.Trigger;
 
-    void finish();
+public interface Finally extends Advice, Trigger {
+
+    void onFinally();
 
 }
