@@ -8,10 +8,6 @@ import java.util.stream.Stream;
 
 public interface Around extends Advice {
 
-    default Joinpoint joinpoint() {
-        return Joinpoint.DEFAULT;
-    }
-
     void around(ThrowingRunnable runnable);
 
     static ThrowingRunnable around(ThrowingRunnable runnable, List<Around> arounds, Joinpoint... joinpoints) {

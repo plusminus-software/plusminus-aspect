@@ -1,4 +1,6 @@
 package software.plusminus.aspect;
 
-public interface Advice {
+import software.plusminus.listener.Pointcut;
+
+public interface Advice extends Pointcut {
 }
